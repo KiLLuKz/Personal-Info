@@ -404,7 +404,6 @@ section:not(#Hero, #Contact, #Personal, #Gallery)::after {
     text-align: center;
     vertical-align: middle;
     line-height: 1.4em;
-    border-radius: 8px;
     
     /* แก้ไข: เพื่อให้ Cursor ทำงานได้ดีขึ้น */
     position: relative; 
@@ -1089,4 +1088,24 @@ section:not(#Hero, #Contact, #Personal, #Gallery)::after {
     background: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
     width: 100%;
+}
+
+/* --- แก้ไข: ไม่ให้รูปหายตอน Hover (ฉบับบังคับ) --- */
+.parent .profile:hover {
+    /* 1. สั่งให้ใช้รูปเดิม + ใส่ !important เพื่อบังคับ */
+    background-image: 
+        linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%), 
+        url('assets/img/Background.jpg') !important; 
+    
+    /* 2. บังคับขนาดเหมือนเดิม */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    
+    /* 3. เพิ่มความสว่างให้กรอบนิดหน่อย */
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    
+    /* 4. (กันเหนียว) ยกเลิกสีพื้นหลังที่จะมาทับ */
+    background-color: transparent !important;
 }
