@@ -940,14 +940,14 @@ section:not(#Hero, #Contact, #Personal, #Gallery)::after {
 .ln-card:hover img { opacity: 1; transform: scale(1.1); }
 .ln-card:hover .ln-content { transform: translateY(0); }
 
-/* --- Personal Info Styling Add-ons --- */
+/* --- Personal Info Styling --- */
 
 /* จัดการรูปโปรไฟล์ */
 .profile-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end; /* ดันลงล่าง */
+    justify-content: flex-end; 
     height: 100%;
     padding-bottom: 40px;
     width: 100%;
@@ -996,8 +996,8 @@ section:not(#Hero, #Contact, #Personal, #Gallery)::after {
 
 /* จัดการเนื้อหาภายในการ์ด */
 .personal {
-    padding: 25px !important; /* บังคับ Padding */
-    align-items: flex-start !important; /* จัดชิดซ้าย */
+    padding: 25px !important; 
+    align-items: flex-start !important; 
     text-align: left !important;
 }
 
@@ -1090,22 +1090,141 @@ section:not(#Hero, #Contact, #Personal, #Gallery)::after {
     width: 100%;
 }
 
-/* --- แก้ไข: ไม่ให้รูปหายตอน Hover (ฉบับบังคับ) --- */
 .parent .profile:hover {
-    /* 1. สั่งให้ใช้รูปเดิม + ใส่ !important เพื่อบังคับ */
     background-image: 
         linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%), 
         url('assets/img/Background.jpg') !important; 
     
-    /* 2. บังคับขนาดเหมือนเดิม */
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     
-    /* 3. เพิ่มความสว่างให้กรอบนิดหน่อย */
     border-color: rgba(255, 255, 255, 0.6);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     
-    /* 4. (กันเหนียว) ยกเลิกสีพื้นหลังที่จะมาทับ */
     background-color: transparent !important;
+}
+/* =========================================
+   GALLERY SECTION (Infinite Auto-Scroll Fix)
+   ========================================= */
+
+.gallery {
+    /* 1. บังคับเต็มจอและจัดกลาง */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    
+    /* Scroll Snap */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* พื้นหลัง Aurora เฉพาะส่วน Gallery */
+.gallery-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 170, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.gallery-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    /* ไม่กำหนดความสูงตายตัว ปล่อยให้ยืดตาม Content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-wrapper h2 {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* --- Track (รางเลื่อน) --- */
+.gallery-track {
+    display: flex;
+    gap: 40px; /* ระยะห่างระหว่างรูป */
+    /* ความกว้างราง = (ความกว้างการ์ด 300 + gap 40) * จำนวนรูปทั้งหมด 12 รูป */
+    width: calc(340px * 12); 
+    animation: gallery-scroll 30s linear infinite; /* วิ่งตลอดเวลา */
+}
+
+/* หยุดวิ่งเมื่อเมาส์ชี้ */
+.gallery-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes gallery-scroll {
+    0% { transform: translateX(0); }
+    /* เลื่อนไปทางซ้ายเท่ากับความกว้างของชุดที่ 1 (6 รูป) */
+    /* (300px + 40px) * 6 = 2040px */
+    100% { transform: translateX(calc(-340px * 6)); } 
+}
+
+/* --- Gallery Card --- */
+.gallery-card {
+    width: 300px;
+    height: 450px;
+    flex-shrink: 0;
+    
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.8;
+}
+
+.gallery-info {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-info h3 { margin: 0; font-size: 1.4rem; color: #00ffaa; }
+.gallery-info p { margin: 5px 0 0 0; font-size: 1rem; color: #ddd; }
+
+.gallery-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    border-color: rgba(0, 255, 170, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 255, 170, 0.2);
+    z-index: 10;
+}
+
+.gallery-card:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.gallery-card:hover .gallery-info {
+    transform: translateY(0);
 }

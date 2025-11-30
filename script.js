@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. ฟังก์ชันขยายเมื่อเจอ "Target" (เพิ่ม th, td, tr เข้าไปแล้ว)
     // ตรงนี้คือจุดสำคัญ! ต้องมี th, td ครับ
-    const targetSelectors = 'a, button, h1, h2, h3, h4, p, span, b, th, td, i, img, .profile, .timeline, .next, .why, .ln-card';
+    const targetSelectors = 'a, button, h1, h2, h3, h4, p, span, b, th, td, i, img, .profile, .timeline, .next, .why, .ln-card, .gallery-card';
 
     // เมื่อเมาส์ "ชี้" (Mouse Over)
     document.addEventListener('mouseover', (e) => {
