@@ -1,24 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Sorawit Srilaon</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Sarabun:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
+
 <body>
+    <!-- Nav Bar -->
     <nav>
         <div class="logo">
-            <a href="#">MySite</a>
+            <a href="#" style="font-size: 16px;"><b>SORAWIT SRILAON</b></a>
         </div>
         <ul class="menu">
-            <li><a href="#">หน้าหลัก</a></li>
-            <li><a href="#">ประวัติส่วนตัว</a></li>
-            <li><a href="#">คลังรูปภาพ</a></li>
-            <li><a href="#">ติดต่อเรา</a></li>
-            <li><a href="#">ตารางสอน</a></li>
+            <li><a href="#Hero">หน้าหลัก</a></li>
+            <li><a href="#Personal">ประวัติส่วนตัว</a></li>
+            <li><a href="#LikeNotLike">สิ่งที่ชอบ/ไม่ชอบ</a></li>
+            <li><a href="#Gallery">คลังรูปภาพ</a></li>
+            <li><a href="#Contact">ติดต่อเรา</a></li>
+            <li><a href="#Schedule">ตาราางสอน</a></li>
         </ul>
     </nav>
+
+    <!-- Hero Section -->
+    <section class="header finisher-header" id="Hero" style="width: 100%; height: 100vh;">
+
+        <h1 class="reveal" data-animate="animate__fadeInDown" data-speed="slow">
+            Welcome
+        </h1>
+        <h2 class="reveal" data-animate="animate__fadeInUp" style="color: aliceblue;">
+            to my <span><b style="color: rgb(209, 209, 255);">website</b></span>
+        </h2>
+
+    </section>
+
+    <!-- Personal Info Section -->
+<section class="parent" id="Personal">
+    
+    <div class="profile personal">
+        <div class="profile-content">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80" alt="Student Profile" class="avatar">
+            <h2 class="glass-title">Sorawit Srilaon</h2>
+            <p class="glass-subtitle">Student & Developer</p>
+        </div>
+    </div>
+
+    <div class="timeline personal">
+        <h3 class="card-header">🎓 Educational Timeline</h3>
+        <ul class="info-list">
+            <li>
+                <span class="year">ประถมศึกษา (ป.6)</span>
+                <span class="school">โรงเรียนอนุบาล......</span>
+            </li>
+            <li>
+                <span class="year">มัธยมศึกษา (ม.3)</span>
+                <span class="school">โรงเรียน......</span>
+            </li>
+            <li>
+                <span class="year">ปัจจุบัน (ม.ปลาย)</span>
+                <span class="school">โรงเรียนบางปะกอกวิทยาคม</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="next personal"> <div class="scroll-content">
+            <h3 class="card-header">💻 Why Technology?</h3>
+            <ul class="bullet-list">
+                <li>ชอบการแก้ปัญหาด้วยตรรกะ</li>
+                <li>เทคโนโลยีเปลี่ยนแปลงโลกได้จริง</li>
+                <li>อยากสร้างเกม/เว็บของตัวเอง</li>
+                <li>เป็นสายงานที่รายได้ดีและมั่นคง</li>
+            </ul>
+            
+            <hr class="glass-divider">
+
+            <h3 class="card-header">🌐 Web Knowledge</h3>
+            <ul class="bullet-list">
+                <li>HTML5 Structure / Semantic</li>
+                <li>CSS3 Flexbox & Grid</li>
+                <li>JavaScript Basic Logic</li>
+                <li>VS Code & Git Version Control</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="why personal"> <h3 class="card-header">🚀 Next Station</h3>
+        <p style="margin-bottom: 10px; opacity: 0.8;">คณะที่อยากเข้าศึกษาต่อ:</p>
+        <ul class="tag-list">
+            <li>วิศวกรรมคอมพิวเตอร์</li>
+            <li>เทคโนโลยีสารสนเทศ (IT)</li>
+            <li>วิทยาการคอมพิวเตอร์ (CS)</li>
+            <li>นวัตกรรมดิจิทัล</li>
+        </ul>
+    </div>
+
+</section>
+    <!-- LikeNotLike Section -->
+    <section class="like-notlike" id="LikeNotLike" style="width: 100%; height: 100vh;">
+        <div class="ln-container">
+
+            <h2 class="reveal" data-animate="animate__fadeInDown" style="padding-top: -20px;">
+                ชอบ <span style="color: #666;">&</span> <span style="color: #ff4757;">ไม่ชอบ</span>
+            </h2>
+
+            <div class="ln-slider-wrapper">
+                <div class="ln-label" style="color: #00ffaa;">💚 THINGS I LIKE</div>
+                <div class="ln-slider scroll-left">
+                    <div class="ln-track">
+
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+                                alt="Pizza">
+                            <div class="ln-content">
+                                <h3>Pizza</h3>
+                                <p>Italian Food</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80"
+                                alt="Coding">
+                            <div class="ln-content">
+                                <h3>Coding</h3>
+                                <p>Web Dev</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
+                                alt="Shoes">
+                            <div class="ln-content">
+                                <h3>Sneakers</h3>
+                                <p>Fashion</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80"
+                                alt="Gaming">
+                            <div class="ln-content">
+                                <h3>Gaming</h3>
+                                <p>FPS / RPG</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80"
+                                alt="Cat">
+                            <div class="ln-content">
+                                <h3>Cats</h3>
+                                <p>Animals</p>
+                            </div>
+                        </div>
+
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+                                alt="Pizza">
+                            <div class="ln-content">
+                                <h3>Pizza</h3>
+                                <p>Italian Food</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80"
+                                alt="Coding">
+                            <div class="ln-content">
+                                <h3>Coding</h3>
+                                <p>Web Dev</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
+                                alt="Shoes">
+                            <div class="ln-content">
+                                <h3>Sneakers</h3>
+                                <p>Fashion</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80"
+                                alt="Gaming">
+                            <div class="ln-content">
+                                <h3>Gaming</h3>
+                                <p>FPS / RPG</p>
+                            </div>
+                        </div>
+                        <div class="ln-card like-item">
+                            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80"
+                                alt="Cat">
+                            <div class="ln-content">
+                                <h3>Cats</h3>
+                                <p>Animals</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="ln-slider-wrapper" style="margin-top: 20px;">
+                <div class="ln-label" style="color: #ff4757;">💔 THINGS I DON'T LIKE</div>
+                <div class="ln-slider scroll-right">
+                    <div class="ln-track">
+
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1595123550441-d377e017de6a?auto=format&fit=crop&w=400&q=80"
+                                alt="Vegetable">
+                            <div class="ln-content">
+                                <h3>Coriander</h3>
+                                <p>Taste Bad</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=400&q=80"
+                                alt="Hot">
+                            <div class="ln-content">
+                                <h3>Hot Weather</h3>
+                                <p>Burn</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1472396961693-142e6e594e13?auto=format&fit=crop&w=400&q=80"
+                                alt="Bug">
+                            <div class="ln-content">
+                                <h3>Bugs</h3>
+                                <p>Scary</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bbcbf?auto=format&fit=crop&w=400&q=80"
+                                alt="Slow Net">
+                            <div class="ln-content">
+                                <h3>Lagging</h3>
+                                <p>Internet</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1584036561566-b93a901668d4?auto=format&fit=crop&w=400&q=80"
+                                alt="Homework">
+                            <div class="ln-content">
+                                <h3>Homework</h3>
+                                <p>Tired</p>
+                            </div>
+                        </div>
+
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1595123550441-d377e017de6a?auto=format&fit=crop&w=400&q=80"
+                                alt="Vegetable">
+                            <div class="ln-content">
+                                <h3>Coriander</h3>
+                                <p>Taste Bad</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=400&q=80"
+                                alt="Hot">
+                            <div class="ln-content">
+                                <h3>Hot Weather</h3>
+                                <p>Burn</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1472396961693-142e6e594e13?auto=format&fit=crop&w=400&q=80"
+                                alt="Bug">
+                            <div class="ln-content">
+                                <h3>Bugs</h3>
+                                <p>Scary</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bbcbf?auto=format&fit=crop&w=400&q=80"
+                                alt="Slow Net">
+                            <div class="ln-content">
+                                <h3>Lagging</h3>
+                                <p>Internet</p>
+                            </div>
+                        </div>
+                        <div class="ln-card dislike-item">
+                            <img src="https://images.unsplash.com/photo-1584036561566-b93a901668d4?auto=format&fit=crop&w=400&q=80"
+                                alt="Homework">
+                            <div class="ln-content">
+                                <h3>Homework</h3>
+                                <p>Tired</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="Gallery" style="width:100%; height:100vh; background-color:#121212;">
+
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="Contact">
+
+        <a href="https://www.instagram.com/killxkz_x/" target="_blank" class="cyber-card noselect reveal"
+            data-animate="animate__fadeInLeft">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+
+                <div class="card card-ig">
+                    <div class="card-content">
+                        <div class="card-glare"></div>
+                        <div class="cyber-lines"><span></span><span></span><span></span><span></span></div>
+
+                        <div class="card-text-wrapper">
+                            <svg class="card-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+
+                            <p class="prompt">Instagram</p>
+                            <div class="title">INSTA<br>GRAM</div>
+                            <div class="subtitle"><span>Follow</span> <span class="highlight">Me</span></div>
+                        </div>
+
+                        <div class="glowing-elements">
+                            <div class="glow-1"></div>
+                            <div class="glow-2"></div>
+                            <div class="glow-3"></div>
+                        </div>
+                        <div class="card-particles">
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="corner-elements"><span></span><span></span><span></span><span></span></div>
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/KiLLuKz" target="_blank" class="cyber-card noselect reveal"
+            data-animate="animate__fadeInUp">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+
+                <div class="card card-fb">
+                    <div class="card-content">
+                        <div class="card-glare"></div>
+                        <div class="cyber-lines"><span></span><span></span><span></span><span></span></div>
+
+                        <div class="card-text-wrapper">
+                            <svg class="card-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036c-2.148 0-2.797 1.603-2.797 2.87v1.12h5.753l-.275 1.832h-5.478v7.98H9.101z" />
+                            </svg>
+
+                            <p class="prompt">Facebook</p>
+                            <div class="title">FACE<br>BOOK</div>
+                            <div class="subtitle"><span>Add</span> <span class="highlight">Me</span></div>
+                        </div>
+
+                        <div class="glowing-elements">
+                            <div class="glow-1"></div>
+                            <div class="glow-2"></div>
+                            <div class="glow-3"></div>
+                        </div>
+                        <div class="card-particles">
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="corner-elements"><span></span><span></span><span></span><span></span></div>
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://github.com/KiLLuKz" target="_blank" class="cyber-card noselect reveal"
+            data-animate="animate__fadeInRight">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+
+                <div class="card card-git">
+                    <div class="card-content">
+                        <div class="card-glare"></div>
+                        <div class="cyber-lines"><span></span><span></span><span></span><span></span></div>
+
+                        <div class="card-text-wrapper">
+                            <svg class="card-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.419-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                            </svg>
+
+                            <p class="prompt">Github</p>
+                            <div class="title">GIT<br>HUB</div>
+                            <div class="subtitle"><span>Check</span> <span class="highlight">Code</span></div>
+                        </div>
+
+                        <div class="glowing-elements">
+                            <div class="glow-1"></div>
+                            <div class="glow-2"></div>
+                            <div class="glow-3"></div>
+                        </div>
+                        <div class="card-particles">
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="corner-elements"><span></span><span></span><span></span><span></span></div>
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </section>
+    <!-- Schedule Section -->
+    <section class="schedule" id="Schedule"
+        style="width:100%; height:100vh; background-color:#121212; display:flex; justify-content:center; align-items:center;">
+        <table class="schedule-table">
+            <h1><b style="color: white;">ตารางสอน</b></h1>
+            <thead>
+                <tr>
+                    <th>วัน/คาบ</th>
+                    <th>07.30-08.20</th>
+                    <th>08.20-09.10</th>
+                    <th>09.10-10.00</th>
+                    <th>10.00-10.50</th>
+                    <th>10.50-11.40</th>
+                    <th>11.40-12.30</th>
+                    <th>12.30-13.20</th>
+                    <th>13.20-14.10</th>
+                    <th>14.10-15.00</th>
+                    <th>15.00-15.50</th>
+                    <th>15.50-16.40</th>
+                    <th>16.40-17.30</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>จันทร์</td>
+                    <td>โฮมรูม<br>ครู<br>ที่ปรึกษา</td>
+                    <td>ค32202<br>ครูภัทรานี<br>215</td>
+                    <td>ก32905<br>ครูติญญภพ<br>พวงคราม</td>
+                    <td>ว32224<br>ครูศุภญัฐ<br>922</td>
+                    <td>ว32224<br>ครูศุภญัฐ<br>922</td>
+                    <td>อ32232<br>ครูเพ็ญศิริ<br>434</td>
+                    <td>พัก<br>กลาง<br>วัน</td>
+                    <td>อ32102<br>ครูสหภาพ<br>241</td>
+                    <td>ว32204<br>ครูรสสุคนธ์<br>941</td>
+                    <td>ท32102<br>ครูนุชสุคนธ์<br>108</td>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                </tr>
+                <tr>
+                    <td>อังคาร</td>
+                    <td>โฮมรูม<br>ครู<br>ที่ปรึกษา</td>
+                    <td>ค32102<br>ครูอนุทิน<br>131</td>
+                    <td>อ32102<br>ครูVille<br>335</td>
+                    <td>เสรี<br>ภาษา<br>อาเซียน</td>
+                    <td>ว32204<br>ครูรสสุคนธ์<br>941</td>
+                    <td>ว32244<br>ครูณัฐญาดา<br>932</td>
+                    <td>พัก<br>กลาง<br>วัน</td>
+                    <td>ส32103<br>ครูพิราวรรณ<br>433</td>
+                    <td>ค32202<br>ครูภัทรานี<br>215</td>
+                    <td>ส่งเสริม<br>วิชาการ<br>126</td>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                </tr>
+                <tr>
+                    <td>พุธ</td>
+                    <td>โฮมรูม<br>ครู<br>ที่ปรึกษา</td>
+                    <td>ว32244<br>ครูณัฐญาดา<br>931</td>
+                    <td>ว32244<br>ครูณัฐญาดา<br>931</td>
+                    <td>อ32232<br>ครูเพ็ญศิริ<br>434</td>
+                    <td>ท32102<br>ครูนุชสุคนธ์<br>225</td>
+                    <td>ว32224<br>ครูศุภญัฐ<br>921</td>
+                    <td>พัก<br>กลาง<br>วัน</td>
+                    <td>ค32102<br>ครูอนุทิน<br>233</td>
+                    <td>ว32204<br>ครูรสสุคนธ์<br>941</td>
+                    <td>ว32204<br>ครูรสสุคนธ์<br>941</td>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                </tr>
+                <tr>
+                    <td>พฤหัสบดี</td>
+                    <td>ก32908<br>จิตอาสา<br>ที่ปรึกษา</td>
+                    <td>กิจกรรม<br>โรงเรียน<br>วิถีพุทธ</td>
+                    <td>ก32908<br>ประชุม<br>ระดับ</td>
+                    <td>ค32202<br>ครูภัทรานี<br>215</td>
+                    <td>ว32172<br>ครูพลากร<br>345</td>
+                    <td>ว32172<br>ครูพลากร<br>345</td>
+                    <td>พัก<br>กลาง<br>วัน</td>
+                    <td>ว30161<br>ครูลักษณ์อนง<br>932</td>
+                    <td>ว30161<br>ครูลักษณ์อนง<br>932</td>
+                    <td>IS<br>สายวิทย์<br>931</td>
+                    <td>IS<br>สายวิทย์<br>931</td>
+                    <td><br><br></td>
+                </tr>
+                <tr>
+                    <td>ศุกร์</td>
+                    <td>ผู้ดี<br>บางปะกอก<br>ส30226</td>
+                    <td>พ32102<br>ครูศรายุทธ<br>สใวอลเลย์</td>
+                    <td>ศ32102<br>ครูจุฑามาศ<br>333</td>
+                    <td>ค32202<br>ครูC<br>215</td>
+                    <td>อ32102<br>ครูD<br>335</td>
+                    <td>ส32103<br>ครูE<br>433</td>
+                    <td>พัก<br>กลาง<br>วัน</td>
+                    <td>ว30281<br>ครูธีระพงษ์<br>345</td>
+                    <td>ว30281<br>ครูธีระพงษ์<br>345</td>
+                    <td>กิจกรรม<br>กีฬา<br>คณะสี</td>
+                    <td>กิจกรรม<br>กีฬา<br>คณะสี</td>
+                    <td><br><br></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- Footer -->
+    <section id="Footer">
+        <div class="footer-content">
+            &copy; Sorawit Srilaon / สรวิชญ์ ศรีลาออน
+        </div>
+    </section>
+
+    <!-- <div class="hero-cursor-tracker"></div> -->
+    <div class="cursor-tracker"></div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
 </body>
+
 </html>

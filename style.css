@@ -1,36 +1,1092 @@
-* {
-    margin: 0;
-    padding: 0;
+:root {
+  --header: 32px;
+  --paragraph: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  height: 100%;
 }
 
 body {
-    font-family: 'Sarabun', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Sarabun', sans-serif;
+  background-color: #000000;
+  overflow-x: hidden;
+  cursor: none; /* ซ่อนเมาส์ปกติ */
 }
 
+/* --- Global Invert Cursor Tracker --- */
+.cursor-tracker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;  /* ขนาดปกติ */
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    pointer-events: none; /* คลิกทะลุได้ */
+    z-index: 9999;
+    mix-blend-mode: difference; /* หัวใจหลักของการกลับสี */
+    
+    /* ใช้ CSS Variable คุมตำแหน่ง */
+    transform: translate3d(var(--x, -100px), var(--y, -100px), 0) translate(-50%, -50%) scale(var(--scale, 1));
+    
+    /* Transition นุ่มๆ */
+    transition: transform 0.1s ease-out, width 0.3s, height 0.3s;
+    will-change: transform;
+    z-index: 2147483647;
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+
+/* คลาสสำหรับขยายใหญ่ (เมื่อ Hover ข้อความ) */
+.cursor-tracker.is-expanding {
+    --scale: 5; /* ขยาย 5 เท่า */
+    background-color: #ffffff;
+}
+
+/* (Optional) ทำให้เมาส์หายไปถ้าออกนอกหน้าต่าง Browser */
+body:hover .cursor-tracker {
+    opacity: 1;
+}
+body:not(:hover) .cursor-tracker {
+    opacity: 0;
+}
+
+/* --- Hero Section --- */
+#Hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.8) 0%, rgba(138, 43, 226, 0) 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(0, 191, 255, 0.7) 0%, rgba(0, 191, 255, 0) 70%),
+              radial-gradient(ellipse at 50% 80%, rgba(50, 205, 50, 0.6) 0%, rgba(50, 205, 50, 0) 65%),
+              linear-gradient(135deg, #000000 0%, #0a0520 100%);
+  background-blend-mode: overlay, screen, hard-light;
+  animation: aurora-drift 25s infinite alternate ease-in-out;
+}
+
+#Hero::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 40px),
+                repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 60px);
+    animation: grid-shift 20s linear infinite;
+    z-index: 0;
+}
+
+#Hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 70%, rgba(10, 5, 32, 0.9) 100%);
+    animation: aurora-pulse 8s infinite alternate;
+    z-index: 0;
+}
+
+#Hero h1, #Hero h2 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+}
+
+#Hero h1 {
+    font-weight: bold;
+    font-size: clamp(64px, 15vw, 128px);
+    margin: -60px 0 5px 0;
+}
+
+#Hero h2 {
+    font-size: 32px;
+    margin-top: -10px;
+    color: rgb(246, 246, 246);
+}
+
+/* --- Nav --- */
 nav {
-    background-color: #333;
-    padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  box-sizing: border-box; /* เพิ่มเพื่อไม่ให้ Padding ดันเฟรม */
+}
+
+nav .logo a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav .menu {
     display: flex;
-    justify-content: space-between; 
-    & .logo {
-        & a {
-            color: white;
-            text-decoration: none;
-        }
-    }
-    & .menu {
-        display: flex;
+    gap: 1.5rem;
+    padding-right: 10px;
+    margin: 0; /* Reset Margin */
+}
 
-        & li {
-            margin: 0 1rem;
-            list-style: none;
+nav .menu li {
+    list-style: none;
+}
 
-            & a {
-                color: white;
-                text-decoration: none;
-                
-            }
+nav .menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
 
-        }
-    }
+nav .menu li a:hover {
+    color: #87ddfe;
+}
+
+.header {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* --- Parent Grid --- */
+.parent {
+  position: relative;
+  overflow: hidden;
+  
+  /* 1. Aurora Background (ปรับสีให้ชัดขึ้น) */
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.5) 0%, rgba(138, 43, 226, 0) 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 191, 255, 0.4) 0%, rgba(0, 191, 255, 0) 70%),
+    radial-gradient(ellipse at 50% 80%, rgba(50, 205, 50, 0.4) 0%, rgba(50, 205, 50, 0) 65%),
+    linear-gradient(135deg, #050505 0%, #1a1a2e 100%);
+    
+  background-blend-mode: overlay, screen, normal;
+  animation: aurora-drift 20s infinite alternate ease-in-out;
+
+  /* Grid Layout */
+  font-weight: bold;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  min-height: 100vh;
+  gap: 25px;
+  padding: 40px;
+  padding-top: 100px; /* เว้นที่ให้ Navbar */
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+/* Pattern จุดจางๆ ด้านหลัง */
+.parent::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* --- Glassmorphism Cards (การ์ดกระจกใส) --- */
+.parent .personal {
+    /* พื้นหลังแบบกระจกใส (Transparent) */
+    background: rgba(255, 255, 255, 0.05); 
+    
+    /* เอฟเฟกต์เบลอฉากหลัง (สำคัญ!) */
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* ขอบกระจกเรืองแสงนิดๆ */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* เงาฟุ้งๆ */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+    color: white;
+    text-align: center;
+}
+
+/* Hover Effect: ลอยขึ้น + สว่างขึ้น */
+.parent .personal:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                0 0 20px rgba(255, 255, 255, 0.1); /* Glow */
+}
+
+/* Text Styling */
+.parent .personal b {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, #fff, #b3b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.parent .personal p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: normal;
+}
+
+/* --- Specific Cards --- */
+
+/* Profile Image Card */
+.parent .profile {
+    /* 1. ใส่ลิงก์รูปภาพตรง url('...') */
+    background-image: 
+        /* เลเยอร์ 1: เงาสีดำไล่ระดับ (เพื่อให้ตัวหนังสือด้านล่างอ่านง่าย) */
+        linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%),
+        /* เลเยอร์ 2: รูปภาพพื้นหลัง */
+        url('assets/img/Background.jpg');
+    
+    /* 2. ตั้งค่าการจัดวางรูป */
+    background-size: cover;    /* ยืดรูปให้เต็มกรอบเสมอ */
+    background-position: center; /* จัดรูปให้อยู่ตรงกลาง */
+    background-repeat: no-repeat;
+
+    /* 3. สไตล์ขอบกระจก (คงเดิมไว้) */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    grid-column: span 2;
+    grid-row: span 5;
+    
+    /* การจัดเรียงเนื้อหา (ให้ไปกองอยู่ข้างล่าง) */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* ดันเนื้อหาลงล่าง */
+    padding: 0; /* ลบ Padding ของเดิมออกเพื่อให้รูปเต็มขอบ */
+    overflow: hidden; /* ตัดส่วนเกิน */
+}
+
+/* Timeline (Grid Placement) */
+.parent .timeline {
+    grid-column: 3 / span 4;
+    grid-row: 1 / span 2;
+}
+
+/* Why */
+.parent .next {
+    grid-column: 3 / span 2;
+    grid-row: 3 / span 3;
+}
+
+/* Next */
+.parent .why {
+    grid-column: 5 / span 2;
+    grid-row: 3 / span 3;
+}
+
+/* --- Sections --- */
+section, .parent, .header, .gallery, .contact, .schedule, .like-notlike {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always; 
+  position: relative;
+  box-sizing: border-box;
+}
+
+section:not(.parent) {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section:not(#Hero, #Footer, #Personal) {
+  width: 100%;
+  height: 100%;
+  background-color: #121212; /* Dark background color */
+  background-image: radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 0
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size:
+    40px 40px,
+    20px 20px,
+    20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+section:not(#Hero, #Personal, #Gallery, #Schedule)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.03) 30.5px,
+    rgba(255, 255, 255, 0.03) 65.5px
+  );
+  z-index: 1;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+section:not(#Hero, #Contact, #Personal, #Gallery)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 60px 60px;
+  z-index: 2;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.schedule {
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.schedule-table {
+  width: 95%;
+  border-collapse: collapse;
+  color: white;
+  font-family: 'Sarabun', sans-serif;
+  table-layout: fixed;
+  margin-top: 100px;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.4em;
+    border-radius: 8px;
+    
+    /* แก้ไข: เพื่อให้ Cursor ทำงานได้ดีขึ้น */
+    position: relative; 
+    z-index: 1; /* ให้เนื้อหาอยู่ต่ำกว่า Cursor */
+}
+
+/* ลบ backdrop-filter ออกจาก cell เพราะมันชอบตีกับ mix-blend-mode */
+.schedule-table th {
+    background-color: rgba(0, 209, 45, 0.3); /* เพิ่มความเข้ม */
+    font-weight: bold;
+}
+
+.schedule-table td:nth-child(1) {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.schedule-table td:nth-child(n+2) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* เพิ่มลูกเล่น: เมื่อเอาเมาส์ชี้ช่องไหน ช่องนั้นสว่างขึ้น (Cursor จะเห็นชัดขึ้น) */
+.schedule-table td:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+
+#Footer {
+    scroll-snap-align: end;
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.071);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    z-index: 1;
+}
+
+@keyframes aurora-drift {
+  0% { background-position: 0% 0%, 0% 0%, 0% 0%; filter: hue-rotate(0deg) brightness(1); }
+  50% { background-position: -10% -5%, 5% 10%, 0% 15%; filter: hue-rotate(30deg) brightness(1.2); }
+  100% { background-position: 5% 10%, -10% -5%, 15% 0%; filter: hue-rotate(60deg) brightness(1); }
+}
+
+@keyframes grid-shift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes aurora-pulse {
+  0% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+
+/* --- Invert Cursor Styles --- */
+
+/* #Hero:hover {
+    cursor: none;
+}
+
+.hero-cursor-tracker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 30px; 
+    height: 30px;
+    
+    background-color: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    
+    opacity: 0;
+    
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%) scale(var(--scale, 0));
+    
+    transition: transform 0.1s ease-out, opacity 0.2s, width 0.2s, height 0.2s;
+    will-change: transform;
+}
+
+.hero-cursor-tracker.is-active {
+    opacity: 1;
+    --scale: 1;
+}
+
+.hero-cursor-tracker.is-expanding {
+    --scale: 5;
+    background-color: #ffffff;
+} */
+
+
+/* From Uiverse.io by 00Kubi */ 
+/* --- 1. จัด Layout Section --- */
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px; /* ระยะห่างสวยๆ */
+  padding: 50px 20px;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  box-sizing: border-box; /* สำคัญ! กันทะลุ */
+}
+
+/* --- 2. Container การ์ด (เปลี่ยนชื่อจาก .container) --- */
+.cyber-card {
+  position: relative;
+  width: 260px;
+  height: 360px;
+  transition: 200ms;
+  perspective: 1000px;
+  
+  /* เพิ่มตรงนี้ครับ เพื่อให้เป็นลิงก์ที่ไม่มีเส้นขีด */
+  display: block; 
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cyber-card:active {
+  transform: scale(0.98); /* กดแล้วย่อลงนิดนึงให้ดูมีน้ำหนัก */
+}
+
+/* --- 3. ตัวการ์ดหลัก --- */
+.card {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: transform 700ms cubic-bezier(0.175, 0.885, 0.32, 1.275); /* เด้งดึ๋งนุ่มๆ */
+  background: linear-gradient(135deg, #1a1a1a, #262626);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* เงาลึกขึ้น */
+}
+
+/* --- 4. จัดข้อความให้อยู่ตรงกลาง (แก้ปัญหาข้อความลอยแปลกๆ) --- */
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* ใช้ Flex จัดทุกอย่างกึ่งกลาง */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+.card-text-wrapper {
+  z-index: 10;
+  text-align: center;
+  /* ป้องกันข้อความโดนบัง */
+  position: relative;
+  pointer-events: none; /* ให้เมาส์ทะลุไปโดน Tracker */
+}
+
+/* Prompt (เช่น Instagram) */
+.prompt {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: 300ms ease-in-out;
+  display: block; /* บังคับขึ้นบรรทัดใหม่ */
+}
+
+/* Title (ตัวใหญ่) */
+.title {
+  font-size: 36px; /* ใหญ่สะใจ */
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 10px 0;
+  opacity: 0; /* ซ่อนก่อน */
+  transform: translateY(20px);
+  transition: 300ms ease-in-out;
+  
+  /* Text Style */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 15px;
+  opacity: 1;
+  transition: 300ms;
+}
+
+/* --- 5. Effect Hover (Logic เดิม แต่ปรับจูน) --- */
+
+/* เมื่อ Hover ให้ Title โผล่ และ Prompt หาย */
+.tracker:hover ~ .card .title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tracker:hover ~ .card .prompt {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.tracker:hover ~ .card .subtitle {
+  opacity: 0.8;
+}
+
+/* แสงและเงา */
+.tracker:hover ~ .card {
+  filter: brightness(1.2);
+}
+
+.cyber-card:hover .card::before {
+  opacity: 1;
+}
+
+/* --- 6. 3D Rotation Grid (ปรับองศาให้นุ่มลง) --- */
+.canvas {
+  perspective: 800px;
+  inset: 0;
+  z-index: 200;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.tracker {
+  position: relative;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* ลดองศาการหมุนลง (จาก 20deg เหลือ 12deg) เพื่อไม่ให้ดูเบี้ยวเกินไป */
+.tr-1:hover ~ .card { transform: rotateX(12deg) rotateY(-8deg); }
+.tr-2:hover ~ .card { transform: rotateX(12deg) rotateY(-4deg); }
+.tr-3:hover ~ .card { transform: rotateX(12deg) rotateY(0deg); }
+.tr-4:hover ~ .card { transform: rotateX(12deg) rotateY(4deg); }
+.tr-5:hover ~ .card { transform: rotateX(12deg) rotateY(8deg); }
+
+.tr-6:hover ~ .card { transform: rotateX(6deg) rotateY(-8deg); }
+.tr-7:hover ~ .card { transform: rotateX(6deg) rotateY(-4deg); }
+.tr-8:hover ~ .card { transform: rotateX(6deg) rotateY(0deg); }
+.tr-9:hover ~ .card { transform: rotateX(6deg) rotateY(4deg); }
+.tr-10:hover ~ .card { transform: rotateX(6deg) rotateY(8deg); }
+
+.tr-11:hover ~ .card { transform: rotateX(0deg) rotateY(-8deg); }
+.tr-12:hover ~ .card { transform: rotateX(0deg) rotateY(-4deg); }
+.tr-13:hover ~ .card { transform: rotateX(0deg) rotateY(0deg); }
+.tr-14:hover ~ .card { transform: rotateX(0deg) rotateY(4deg); }
+.tr-15:hover ~ .card { transform: rotateX(0deg) rotateY(8deg); }
+
+.tr-16:hover ~ .card { transform: rotateX(-6deg) rotateY(-8deg); }
+.tr-17:hover ~ .card { transform: rotateX(-6deg) rotateY(-4deg); }
+.tr-18:hover ~ .card { transform: rotateX(-6deg) rotateY(0deg); }
+.tr-19:hover ~ .card { transform: rotateX(-6deg) rotateY(4deg); }
+.tr-20:hover ~ .card { transform: rotateX(-6deg) rotateY(8deg); }
+
+.tr-21:hover ~ .card { transform: rotateX(-12deg) rotateY(-8deg); }
+.tr-22:hover ~ .card { transform: rotateX(-12deg) rotateY(-4deg); }
+.tr-23:hover ~ .card { transform: rotateX(-12deg) rotateY(0deg); }
+.tr-24:hover ~ .card { transform: rotateX(-12deg) rotateY(4deg); }
+.tr-25:hover ~ .card { transform: rotateX(-12deg) rotateY(8deg); }
+
+
+/* --- 7. Decorative Elements (แสงวิบวับ) --- */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 60%);
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+}
+
+.tracker:hover ~ .card .card-glare {
+  opacity: 1;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.2), transparent 50%);
+}
+
+.corner-elements span {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: 0.3s;
+}
+
+.corner-elements span:nth-child(1) { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
+.corner-elements span:nth-child(2) { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
+.corner-elements span:nth-child(3) { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
+.corner-elements span:nth-child(4) { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
+
+.scan-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateY(-100%);
+  animation: scanMove 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanMove { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+/* --- 8. Theme Colors (เหมือนเดิมแต่ปรับให้ชัดขึ้น) --- */
+
+/* IG */
+.card-ig .title { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(220, 39, 67, 0.6)); }
+.card-ig .highlight { color: #dc2743; }
+.card-ig .corner-elements span { border-color: rgba(220, 39, 67, 0.5); }
+
+/* FB */
+.card-fb .title { background: linear-gradient(45deg, #1877F2, #00C6FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(24, 119, 242, 0.6)); }
+.card-fb .highlight { color: #1877F2; }
+.card-fb .corner-elements span { border-color: rgba(24, 119, 242, 0.5); }
+
+/* Github */
+.card-git .title { background: linear-gradient(45deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)); }
+.card-git .highlight { color: #fff; }
+.card-git .corner-elements span { border-color: rgba(255, 255, 255, 0.5); }
+
+/* สไตล์ของ Logo SVG */
+.card-logo {
+  width: 50px; /* ขนาด Logo */
+  height: 50px;
+  fill: rgba(255, 255, 255, 0.8); /* สีขาวจางๆ */
+  margin-bottom: 15px; /* เว้นระยะห่างจากตัวหนังสือ */
+  
+  /* Animation */
+  transition: all 300ms ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Effect เมื่อ Hover Tracker: ให้ Logo หายไป */
+.tracker:hover ~ .card .card-logo {
+  opacity: 0;
+  transform: translateY(-20px); /* ลอยขึ้นไปแล้วหาย */
+}
+
+/* ปรับสี Logo ตามธีม (Optional: ถ้าอยากให้ Logo เป็นสีเดียวกับธีม) */
+.card-fb .card-logo { fill: #1877F2; }
+.card-ig .card-logo { fill: #e6683c; } /* หรือใช้ url(#gradient) ถ้า advance แต่สีพื้นๆ ก็สวยแล้ว */
+/* Github ปล่อยขาวไว้ */
+
+/* =========================================
+   LIKE & NOT LIKE SECTION (Infinite Scroll)
+   ========================================= */
+
+.like-notlike {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    position: relative;
+    overflow: hidden;
+    
+    /* Scroll Snap */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* Pattern พื้นหลัง */
+.like-notlike::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ln-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4vh;
+    
+    /* ✅ แก้ปัญหา Navbar บัง: ดันเนื้อหาลงมา */
+    padding-top: 80px; 
+    box-sizing: border-box;
+}
+
+.ln-container h2 {
+    font-size: 3rem;
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.ln-label {
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 10%;
+}
+
+/* --- Slider Core --- */
+.ln-slider-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.ln-slider {
+    display: flex;
+    width: 100%;
+}
+
+.ln-track {
+    display: flex;
+    gap: 30px;
+    /* (CardWidth 280 + Gap 30) * 10 รูป = 3100px */
+    width: calc(310px * 10);
+}
+
+/* Animation */
+.scroll-left .ln-track {
+    animation: ln-scroll-left 25s linear infinite;
+}
+
+.scroll-right .ln-track {
+    animation: ln-scroll-right 25s linear infinite;
+}
+
+/* Hover แล้วหยุด */
+.ln-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes ln-scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-310px * 5)); } 
+}
+
+@keyframes ln-scroll-right {
+    0% { transform: translateX(calc(-310px * 5)); } 
+    100% { transform: translateX(0); }
+}
+
+/* --- Card Styles --- */
+.ln-card {
+    width: 280px;
+    height: 180px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ln-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+    opacity: 0.6;
+}
+
+.ln-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    transform: translateY(10px);
+    transition: 0.3s;
+    text-align: left;
+}
+
+.ln-content h3 { margin: 0; font-size: 1.2rem; }
+.ln-content p { margin: 0; font-size: 0.9rem; opacity: 0.7; }
+
+/* --- Hover Effects --- */
+.like-item:hover {
+    border: 2px solid #00ffaa;
+    box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+    transform: scale(1.05);
+    z-index: 20;
+}
+
+.dislike-item:hover {
+    border: 2px solid #ff4757;
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.4);
+    transform: scale(1.05);
+    z-index: 20;
+}
+
+.ln-card:hover img { opacity: 1; transform: scale(1.1); }
+.ln-card:hover .ln-content { transform: translateY(0); }
+
+/* --- Personal Info Styling Add-ons --- */
+
+/* จัดการรูปโปรไฟล์ */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* ดันลงล่าง */
+    height: 100%;
+    padding-bottom: 40px;
+    width: 100%;
+    /* Gradient จางๆ ด้านล่างเพื่อให้ตัวหนังสือชัด */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+    border-radius: 24px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+    margin-bottom: 20px;
+}
+
+.glass-title {
+    margin: 0;
+    font-size: 2rem;
+    background: linear-gradient(to right, #fff, #87ddfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(135, 221, 254, 0.3);
+}
+
+.glass-subtitle {
+    margin: 5px 0 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* หัวข้อในการ์ด */
+.card-header {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #00ffaa;
+    font-size: 1.4rem;
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+/* จัดการเนื้อหาภายในการ์ด */
+.personal {
+    padding: 25px !important; /* บังคับ Padding */
+    align-items: flex-start !important; /* จัดชิดซ้าย */
+    text-align: left !important;
+}
+
+/* Timeline List */
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.info-list li:last-child { border-bottom: none; }
+
+.year { color: #87ddfe; font-weight: bold; }
+.school { color: rgba(255, 255, 255, 0.8); }
+
+/* Bullet List (สำหรับ Why & Knowledge) */
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+}
+
+.bullet-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: #00ffaa;
+}
+
+/* Tag List (สำหรับคณะ) */
+.tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-list li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+
+.tag-list li:hover {
+    background: rgba(135, 221, 254, 0.2);
+    border-color: #87ddfe;
+    transform: translateY(-3px);
+}
+
+/* Scroll Content (ถ้าเนื้อหาเยอะเกิน) */
+.scroll-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar สวยๆ */
+.scroll-content::-webkit-scrollbar { width: 4px; }
+.scroll-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+.glass-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+    width: 100%;
 }
